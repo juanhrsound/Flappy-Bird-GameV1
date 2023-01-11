@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public Sprite[] sprites;
     private int spriteIndex;
     public Rigidbody2D rb;
+    
+   
 
 
 
@@ -17,6 +19,7 @@ public class Player : MonoBehaviour
     {
         spriteR = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+
     }
 
     private void Start()
@@ -32,7 +35,6 @@ public class Player : MonoBehaviour
             spriteIndex = 0;
         }
         spriteR.sprite = sprites[spriteIndex];
-
 
     }
 

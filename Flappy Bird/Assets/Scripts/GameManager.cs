@@ -34,11 +34,11 @@ public class GameManager : MonoBehaviour
         player.enabled = true;
 
 
-        Pipes[] pipes = FindObjectsOfType<Pipes>();
+        Porros[] porros = FindObjectsOfType<Porros>();
 
-        for(int i = 0; i < pipes.Length; i++)
+        for(int i = 0; i < porros.Length; i++)
         {
-            Destroy(pipes[i].gameObject);
+            Destroy(porros[i].gameObject);
         }
 
 
