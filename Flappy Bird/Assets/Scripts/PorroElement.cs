@@ -5,8 +5,7 @@ using UnityEngine;
 public class PorroElement : MonoBehaviour
 {
     
-    public Rigidbody2D rb;
-    
+    public Rigidbody2D rb;   
   
 
 
@@ -21,7 +20,7 @@ public class PorroElement : MonoBehaviour
     void Update()
     {        
         
-        rb.transform.position = new Vector2(rb.transform.position.x, -8.50f);
+        rb.transform.position = new Vector2(rb.transform.position.x, -9.50f);
 
         
     }

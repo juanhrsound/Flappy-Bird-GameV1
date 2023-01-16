@@ -11,24 +11,35 @@ public class GameManager : MonoBehaviour
     public GameObject playButton;
     public GameObject gameOver;
     private int score;
-
+    
 
     private void Awake()
     {        
         Application.targetFrameRate = 60;
-        Pause();
+        Pause();    
 
+
+    }
+
+    private void Start()
+    {
+        Play();
     }
 
 
 
     public void Play()
     {
+        
         score = 0;
         scoreText.text = score.ToString();
+        
+
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
+        
+
 
         Time.timeScale = 1f;
         player.enabled = true;
@@ -41,24 +52,49 @@ public class GameManager : MonoBehaviour
             Destroy(porros[i].gameObject);
         }
 
+    }     
 
 
-    }
 
     public void Pause()
     {
         Time.timeScale = 0f;
         player.enabled = false;
+        gameOver.SetActive(false);
 
-    }   
 
+    }
+
+    
+
+    public void Die()
+    {
+        Time.timeScale = 0f;
+        player.enabled = false;
+        gameOver.SetActive(true);
+
+    }
+
+
+
+
+    
     public void GameOver()
     {
+        
+        
         gameOver.SetActive(true);
         playButton.SetActive(true);
-        Pause();
-        
+        Die();
+      
 
+    }
+
+
+    public void delayGameOver()
+    {
+        Invoke("GameOver", 0.5f);
+        
 
 
     }
