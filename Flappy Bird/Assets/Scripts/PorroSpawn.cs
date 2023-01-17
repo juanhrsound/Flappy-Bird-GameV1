@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class PorroSpawn : MonoBehaviour
 {
-    private SpriteRenderer ren;
-
+    public GameObject gameObject;
 
 
     // Start is called before the first frame update
     private void Awake()
     {
-        ren = GetComponent<SpriteRenderer>();
+       
     }
 
     void Start()
     {
+        
         
         StartCoroutine(PorroBlink());
         
@@ -24,10 +24,10 @@ public class PorroSpawn : MonoBehaviour
 
     IEnumerator PorroBlink()
     {
-        yield return new WaitForSeconds(2f);
-        ren.enabled = false;
         yield return new WaitForSeconds(5f);
-        ren.enabled = true;
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(5f);
+        gameObject.SetActive(true);
 
     }
 

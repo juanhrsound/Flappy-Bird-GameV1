@@ -15,15 +15,17 @@ public class Player : MonoBehaviour
     public AudioSource engineUp;
     public AudioSource engineDown;
     private SpriteRenderer ren;
+    private float rotationSpeed = 1f;
+
+    //public GameObject gameObject;
+    
+    
 
     private bool jumped;
+    private bool blinkObjectActivated = false;
+   
     //private bool isVisible = true;
     //private bool isReappearAfterDelayRunning = false;
-
-
-
-
-
 
     private void Awake()
     {
@@ -31,16 +33,15 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         trans = GetComponent<Transform>();
         ren = GetComponent<SpriteRenderer>();
+        //gameObject = GetComponent<GameObject>();
 
     }
 
     private void Start()
     {
-        StartCoroutine(BlinkObject());
+               
 
-
-    }
-   
+    }   
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -63,11 +64,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             engineUp.Play();
-            jumped = true;
+            jumped = true;                     
 
 
         }
@@ -75,21 +76,40 @@ public class Player : MonoBehaviour
         {
             engineDown.Play();
             jumped = false;
-        }        
+        }
 
-    }
+        
+        
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            BlinkObjectNow();
+        }             
 
 
+    }       
 
-
-
-    IEnumerator BlinkObject()
+    private void BlinkObjectNow()
     {
-        yield return new WaitForSeconds(5f + Random.Range(1f, 10f));
-        ren.enabled = false;
-        yield return new WaitForSeconds(1f);
-        ren.enabled = true;
+        StartCoroutine(CuchoShield());
+
     }
+
+    
+    
+
+    IEnumerator CuchoShield()
+    {
+
+        transform.localScale = new Vector2(2, 2);
+        rb.position = new Vector2(-15, 2);
+        yield return new WaitForSeconds(0.1f);
+        transform.localScale = new Vector2(0.6f, 0.6f);
+        rb.position = new Vector2(-16, 2);
+
+    }
+
+    
 
     
      

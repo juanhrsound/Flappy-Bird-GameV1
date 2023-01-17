@@ -6,24 +6,54 @@ public class Spawner : MonoBehaviour
 {
     public GameObject prefab;
     public float spwanRate = 1f;
+    
     public float minHeight = -0.5f;
     public float maxHeight = 0.5f;
     public int numPrefabs = 10;
-   
+    public bool enemyIncoming = false;
 
+    public GameObject enemy;
+    private Enemy enemyScript;
+
+    private void Awake()
+    {
+        enemyScript = enemy.GetComponent<Enemy>();
+    }
+
+
+
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X) && enemyIncoming == false)
+        {
+
+            
+            spwanRate = 10f;
+            CancelInvoke(nameof(Spawn));
+            OnEnable();
+            enemyIncoming = true;
+            
+
+            if (enemyIncoming == true)
+            {
+                CancelInvoke(nameof(Spawn));
+                SpawnerActsNow();
+
+            }
+        }
+
+
+        
+               
+    }
 
     private void OnEnable()
     {
 
         InvokeRepeating(nameof(Spawn), spwanRate, spwanRate);
         
-
-    }
-
-     
-
-
-
+    }  
 
 
     private void OnDisable()
@@ -40,10 +70,21 @@ public class Spawner : MonoBehaviour
        
     }
 
+    public void SpawnerActsNow()
+    {
+        StartCoroutine(SpawnerChanges());
+    } 
 
 
+    IEnumerator SpawnerChanges()
+    {        
+        yield return new WaitForSeconds(15f);        
+        spwanRate = 1f;
+        OnEnable();
+        enemyIncoming = false;
+       
 
-
+    }
 
 
 }
