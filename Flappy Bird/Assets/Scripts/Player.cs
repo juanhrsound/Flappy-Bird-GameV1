@@ -15,15 +15,16 @@ public class Player : MonoBehaviour
     [SerializeField] public AudioSource engineUp;
     [SerializeField] public AudioSource engineDown;
 
-    private SpriteRenderer ren;
-    private float rotationSpeed = 1f;
+   // private enum State {Cucho, CuchoShield}
+   // private State currentState = State.CuchoShield;
+
+    public bool shieldOn;
 
     //public GameObject gameObject;
-    
-    
+
+
 
     private bool jumped;
-    private bool blinkObjectActivated = false;
    
     //private bool isVisible = true;
     //private bool isReappearAfterDelayRunning = false;
@@ -33,34 +34,41 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         trans = GetComponent<Transform>();
-        ren = GetComponent<SpriteRenderer>();
-        //gameObject = GetComponent<GameObject>();
 
     }
 
     private void Start()
     {
-               
+    
 
     }   
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag == "Obstacle")
+        if (other.gameObject.tag == "Obstacle")
         {
-           
-            FindObjectOfType<GameManager>().delayGameOver();
+
+            FindObjectOfType<GameManager>().DelayGameOver();
             anim.SetBool("touchingObstacle", true);
 
 
-        } else if (other.gameObject.tag == "Scoring")
+        }
+        else if (other.gameObject.tag == "Scoring")
         {
             FindObjectOfType<GameManager>().IncreaseScore();
-            
+
+        }
+
+        else if (other.gameObject.tag == "Enemy" && shieldOn == false)
+        {
+            FindObjectOfType<GameManager>().DelayGameOver();
+            anim.SetBool("touchingObstacle", true);           
+
         }
 
 
-    }
+
+    }   
 
 
     private void Update()
@@ -78,13 +86,13 @@ public class Player : MonoBehaviour
             engineDown.Play();
             jumped = false;
         }
-
+                
         
-        
 
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(0))
         {
             BlinkObjectNow();
+            
         }             
 
 
@@ -99,12 +107,24 @@ public class Player : MonoBehaviour
 
     IEnumerator CuchoShield()
     {
+        anim.SetBool("cuchoFua", true);
+        transform.localScale = new Vector2(2.5f, 2.5f );
+        shieldOn = true;
+        //GetComponent<Enemy>().Shield(true);
+        //Debug.Log("SHIELD ON");
 
-        transform.localScale = new Vector2(0.1f, 0.1f );
-        //rb.position = new Vector2(-15, 2);
-        yield return new WaitForSeconds(5f);
+
+        yield return new WaitForSeconds(0.2f);
+        anim.SetBool("cuchoFua", false);
         transform.localScale = new Vector2(0.6f, 0.6f);
-        //rb.position = new Vector2(-16, 2);
+        shieldOn = false;
+        //GetComponent<Enemy>().Shield(false);
+        //Debug.Log("SHIELD OFF");
+
+
+
+
+
 
     }
 

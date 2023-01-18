@@ -8,9 +8,14 @@ public class GameManager : MonoBehaviour
 {
     public Text scoreText;
     public Player player;
+    public Enemy enemy;
+
     public GameObject playButton;
     public GameObject gameOver;
     private int score;
+
+    
+   
     
 
     private void Awake()
@@ -75,8 +80,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void enemyAppears()
+    public void DestroyFireBall()
     {
+        
+
 
     }
 
@@ -96,7 +103,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void delayGameOver()
+    public void DelayGameOver()
     {
         Invoke("GameOver", 0.5f);
         

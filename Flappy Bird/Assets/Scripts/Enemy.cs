@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private enum State {enemyIdle, enemyAttacks }
-    private State currentState = State.enemyIdle;
-    public GameObject gameObjectEnemy;
-    //public SpriteRenderer ren;
+
+
+    public GameObject gameObjectEnemy;    
     public Animator anim;
     public Rigidbody2D rb;
-    //public Spawner enemyHere;
+    public Player player;
+    public bool hasShield;
+    public Animator animPlayer;
 
 
-    private Transform trans;       
 
+
+    private Transform trans;    
     private float impulse = 5f;
-    private float numberOfFireBalls = 5f;
+    private bool fireBallCollides;
 
     // Start is called before the first frame update
     void Awake()
@@ -25,9 +27,20 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         trans = GetComponent<Transform>();
 
-        
+            
+
+
+
+
     }
-    // Update is called once per frame
+
+
+    private void Start()
+    {
+       
+
+        
+    }  
 
 
 
@@ -37,11 +50,63 @@ public class Enemy : MonoBehaviour
         {
 
             InvokeRepeating("EnemyAppearsNow", 0f, 2f);
-
-        }        
             
 
+        }
+
+        if (fireBallCollides ==  true)
+        {
+            anim.SetBool("fireBallCollides", true);
+
+        }
+
+        if (fireBallCollides == false)
+        {
+            anim.SetBool("fireDestroyed", false);
+        }
+
+        if (animPlayer.GetBool("cuchoFua") == true)
+        {
+            trans.position = new Vector2(rb.position.x, trans.position.y);
+            anim.SetBool("fireDestroyed", true);
+            
+        }
+
+
+
+        if (animPlayer.GetBool("cuchoFua") == false)
+        {
+            Debug.Log("SHIELD OFF");
+        }
+        
+
     }
+
+
+
+
+    public void Shield(bool value)
+    {
+        hasShield = value;
+
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && animPlayer.GetBool("cuchoFua") == false)
+        {
+
+            FindObjectOfType<GameManager>().DelayGameOver();
+            rb.constraints = RigidbodyConstraints2D.FreezePosition;
+            trans.position = new Vector2(rb.position.x + -2f, trans.position.y);
+
+            fireBallCollides = true;
+        }
+                
+
+    } 
+
 
     public void EnemyAppearsNow()
     {
@@ -51,8 +116,8 @@ public class Enemy : MonoBehaviour
 
     IEnumerator EnemyAppears()
     {
-        rb.velocity = new Vector3(-5, 0, 0) * impulse;
-
+        
+        rb.velocity = new Vector3(-5, 0, 0) * impulse;        
         trans.position = new Vector3(15, Random.Range(-3, 3), 0);       
         yield return null;
     }
