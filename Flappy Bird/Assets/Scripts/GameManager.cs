@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public Text scoreText;
     public Player player;
-    public Enemy enemy;
 
     public GameObject playButton;
     public GameObject gameOver;
@@ -80,12 +79,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void DestroyFireBall()
-    {
-        
-
-
-    }
+    
 
 
 

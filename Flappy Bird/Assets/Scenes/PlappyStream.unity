@@ -825,7 +825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 339199657}
   player: {fileID: 474534167}
-  enemy: {fileID: 0}
+  enemy: {fileID: 304127041}
   playButton: {fileID: 1940515465}
   gameOver: {fileID: 834603177}
 --- !u!4 &708684065

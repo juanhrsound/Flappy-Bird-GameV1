@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
     public bool hasShield;
     public Animator animPlayer;
 
+    public bool enemyCollides;
+
 
 
 
@@ -25,12 +27,7 @@ public class Enemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();        
         rb = GetComponent<Rigidbody2D>();
-        trans = GetComponent<Transform>();
-
-            
-
-
-
+        trans = GetComponent<Transform>();         
 
     }
 
@@ -65,20 +62,65 @@ public class Enemy : MonoBehaviour
             anim.SetBool("fireDestroyed", false);
         }
 
+        /*
         if (animPlayer.GetBool("cuchoFua") == true)
         {
             trans.position = new Vector2(rb.position.x, trans.position.y);
-            anim.SetBool("fireDestroyed", true);
+            
             
         }
-
+        */
 
 
         if (animPlayer.GetBool("cuchoFua") == false)
         {
             Debug.Log("SHIELD OFF");
         }
-        
+
+
+        DestroyFireBall();
+
+
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "Player")
+        {
+            enemyCollides = true;
+        }
+
+
+    }
+
+   
+
+    public void DestroyFireBall()
+    {
+        if (animPlayer.GetBool("cuchoFua") == true)
+        {
+            if (gameObjectEnemy.transform.position.x < player.transform.position.x-1)
+            {
+                if (enemyCollides == true)
+                {
+                    anim.SetBool("fireDestroyed", true);
+                    //Destroy(gameObject);
+
+                }
+                else
+                {
+                    enemyCollides = true;
+                }
+                
+
+            }
+
+            
+            
+
+        }
+
+
 
     }
 
