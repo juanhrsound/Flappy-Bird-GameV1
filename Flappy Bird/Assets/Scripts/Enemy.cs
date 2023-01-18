@@ -7,37 +7,57 @@ public class Enemy : MonoBehaviour
     private enum State {enemyIdle, enemyAttacks }
     private State currentState = State.enemyIdle;
     public GameObject gameObjectEnemy;
-    public SpriteRenderer ren;
-
+    //public SpriteRenderer ren;
     public Animator anim;
+    public Rigidbody2D rb;
+    //public Spawner enemyHere;
 
+
+    private Transform trans;       
+
+    private float impulse = 5f;
+    private float numberOfFireBalls = 5f;
 
     // Start is called before the first frame update
     void Awake()
     {
-        anim = GetComponent<Animator>();
-        ren = GetComponent<SpriteRenderer>();
-    }
+        anim = GetComponent<Animator>();        
+        rb = GetComponent<Rigidbody2D>();
+        trans = GetComponent<Transform>();
 
+        
+    }
     // Update is called once per frame
+
+
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKey(KeyCode.X))
         {
-            Invoke("enemyAppears", 2f);
-        }
 
-        if (Input.GetButtonDown(KeyCode.R))
-        {
-            anim.SetBool("enemyAttacks", true);
-        }
+            InvokeRepeating("EnemyAppearsNow", 0f, 2f);
+
+        }        
+            
 
     }
 
-
-    private void enemyAppears()
+    public void EnemyAppearsNow()
     {
-        ren.enabled = true;
-        anim.SetBool("enemyIdle", true);
+        StartCoroutine(EnemyAppears());
     }
+
+
+    IEnumerator EnemyAppears()
+    {
+        rb.velocity = new Vector3(-5, 0, 0) * impulse;
+
+        trans.position = new Vector3(15, Random.Range(-3, 3), 0);       
+        yield return null;
+    }
+
+
+
+
 }

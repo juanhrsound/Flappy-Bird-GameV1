@@ -12,12 +12,12 @@ public class Spawner : MonoBehaviour
     public int numPrefabs = 10;
     public bool enemyIncoming = false;
 
-    public GameObject enemy;
+    //public GameObject enemy;
     private Enemy enemyScript;
 
     private void Awake()
     {
-        enemyScript = enemy.GetComponent<Enemy>();
+        //enemyScript = enemy.GetComponent<Enemy>();
     }
 
 
@@ -27,25 +27,18 @@ public class Spawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && enemyIncoming == false)
         {
-
             
-            spwanRate = 10f;
+            spwanRate = 2f;
             CancelInvoke(nameof(Spawn));
             OnEnable();
             enemyIncoming = true;
-            
 
             if (enemyIncoming == true)
-            {
-                CancelInvoke(nameof(Spawn));
+            {                
                 SpawnerActsNow();
-
             }
-        }
+        }    
 
-
-        
-               
     }
 
     private void OnEnable()

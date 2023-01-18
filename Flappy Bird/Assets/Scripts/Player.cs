@@ -5,15 +5,16 @@ using UnityEngine.Audio;
 
 public class Player : MonoBehaviour
 {
-    public Vector3 direction;    
-    public float jumpForce = 5f;
-    public Rigidbody2D rb;
-    public Transform trans;
-    public Animator anim;
-    public AudioMixer mix;
-    public AudioSource audioSource;
-    public AudioSource engineUp;
-    public AudioSource engineDown;
+    [SerializeField] public Vector3 direction;
+    [SerializeField] public float jumpForce = 5f;
+    [SerializeField] public Rigidbody2D rb;
+    [SerializeField] public Transform trans;
+    [SerializeField] public Animator anim;
+    [SerializeField] public AudioMixer mix;
+    [SerializeField] public AudioSource audioSource;
+    [SerializeField] public AudioSource engineUp;
+    [SerializeField] public AudioSource engineDown;
+
     private SpriteRenderer ren;
     private float rotationSpeed = 1f;
 
@@ -81,7 +82,7 @@ public class Player : MonoBehaviour
         
         
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             BlinkObjectNow();
         }             
@@ -93,19 +94,17 @@ public class Player : MonoBehaviour
     {
         StartCoroutine(CuchoShield());
 
-    }
-
-    
+    }   
     
 
     IEnumerator CuchoShield()
     {
 
-        transform.localScale = new Vector2(2, 2);
-        rb.position = new Vector2(-15, 2);
-        yield return new WaitForSeconds(0.1f);
+        transform.localScale = new Vector2(0.1f, 0.1f );
+        //rb.position = new Vector2(-15, 2);
+        yield return new WaitForSeconds(5f);
         transform.localScale = new Vector2(0.6f, 0.6f);
-        rb.position = new Vector2(-16, 2);
+        //rb.position = new Vector2(-16, 2);
 
     }
 
