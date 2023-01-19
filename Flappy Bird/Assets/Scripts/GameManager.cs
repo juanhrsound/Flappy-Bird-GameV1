@@ -56,6 +56,15 @@ public class GameManager : MonoBehaviour
             Destroy(porros[i].gameObject);
         }
 
+        /*
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+
+        for (int i = 0; i < enemies.Length; i++)
+        {
+            Destroy(enemies[i].gameObject);
+
+        }*/
+
     }     
 
 

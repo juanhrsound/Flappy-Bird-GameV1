@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public GameObject prefab;
+    public GameObject prefabPorros;
+    public GameObject prefabEnemy;
+
     public float spwanRate = 1f;
-    
+    public float spawnRateEnemy = 1f;
+
     public float minHeight = -0.5f;
     public float maxHeight = 0.5f;
     public int numPrefabs = 10;
     public bool enemyIncoming = false;
+    
 
     //public GameObject enemy;
     private Enemy enemyScript;
@@ -28,40 +32,56 @@ public class Spawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && enemyIncoming == false)
         {
             
-            spwanRate = 2f;
-            CancelInvoke(nameof(Spawn));
-            OnEnable();
+            spwanRate = 10f;
+            CancelInvoke(nameof(SpawnPorros));
+            OnEnable();            
             enemyIncoming = true;
 
             if (enemyIncoming == true)
             {                
                 SpawnerActsNow();
             }
-        }    
+        }
+
+       
 
     }
 
     private void OnEnable()
     {
 
-        InvokeRepeating(nameof(Spawn), spwanRate, spwanRate);
+        InvokeRepeating(nameof(SpawnPorros), spwanRate, spwanRate);
         
-    }  
+    }
+
+    public void OnEnableEnemy()
+    {
+        InvokeRepeating(nameof(SpawnEnemy), spawnRateEnemy, spawnRateEnemy);
+    }
+
 
 
     private void OnDisable()
     {
-        CancelInvoke(nameof(Spawn));
+        CancelInvoke(nameof(SpawnPorros));
     }    
 
 
-    void Spawn()
+    void SpawnPorros()
     {
         
-        GameObject porros = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject porros = Instantiate(prefabPorros, transform.position, Quaternion.identity);
         porros.transform.position += Vector3.up * Random.Range(minHeight, maxHeight);
-       
+              
+              
     }
+
+    void SpawnEnemy()
+    {
+        GameObject enemy = Instantiate(prefabEnemy, transform.position, Quaternion.identity);
+    }
+
+
 
     public void SpawnerActsNow()
     {
@@ -71,7 +91,7 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnerChanges()
     {        
-        yield return new WaitForSeconds(15f);        
+        yield return new WaitForSeconds(10f);        
         spwanRate = 1f;
         OnEnable();
         enemyIncoming = false;

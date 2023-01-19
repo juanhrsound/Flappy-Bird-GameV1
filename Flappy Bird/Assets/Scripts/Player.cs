@@ -11,9 +11,9 @@ public class Player : MonoBehaviour
     [SerializeField] public Transform trans;
     [SerializeField] public Animator anim;
     [SerializeField] public AudioMixer mix;
-    [SerializeField] public AudioSource audioSource;
-    [SerializeField] public AudioSource engineUp;
-    [SerializeField] public AudioSource engineDown;
+    //[SerializeField] public AudioSource audioSource;
+    [SerializeField] public AudioSource Fuaaa;
+    //[SerializeField] public AudioSource engineDown;
 
    // private enum State {Cucho, CuchoShield}
    // private State currentState = State.CuchoShield;
@@ -76,14 +76,13 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            engineUp.Play();
+            
             jumped = true;                     
 
 
         }
         if (jumped == true && rb.velocity.y < 0)
         {
-            engineDown.Play();
             jumped = false;
         }
                 
@@ -92,6 +91,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             BlinkObjectNow();
+            Fuaaa.Play();
             
         }             
 

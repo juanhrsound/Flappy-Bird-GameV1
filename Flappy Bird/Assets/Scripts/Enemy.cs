@@ -6,18 +6,23 @@ public class Enemy : MonoBehaviour
 {
 
 
-    public GameObject gameObjectEnemy;    
     public Animator anim;
     public Rigidbody2D rb;
     public Player player;
+    public Spawner spawner;
+
     public bool hasShield;
     public Animator animPlayer;
+    
+
 
     public bool enemyCollides;
 
+    private SpriteRenderer ren;
+    private float distanceEnemy;
+    private float distancePlayer;
 
-
-
+    private float distanceThreshold = 3f;
     private Transform trans;    
     private float impulse = 5f;
     private bool fireBallCollides;
@@ -27,14 +32,14 @@ public class Enemy : MonoBehaviour
     {
         anim = GetComponent<Animator>();        
         rb = GetComponent<Rigidbody2D>();
-        trans = GetComponent<Transform>();         
+        trans = GetComponent<Transform>();
+        ren = GetComponent<SpriteRenderer>();
 
     }
 
 
     private void Start()
-    {
-       
+    {     
 
         
     }  
@@ -47,107 +52,73 @@ public class Enemy : MonoBehaviour
         {
 
             InvokeRepeating("EnemyAppearsNow", 0f, 2f);
-            
+                       
 
-        }
+        }           
 
-        if (fireBallCollides ==  true)
-        {
-            anim.SetBool("fireBallCollides", true);
-
-        }
-
-        if (fireBallCollides == false)
-        {
-            anim.SetBool("fireDestroyed", false);
-        }
-
-        /*
-        if (animPlayer.GetBool("cuchoFua") == true)
-        {
-            trans.position = new Vector2(rb.position.x, trans.position.y);
-            
-            
-        }
-        */
+        float distanceEnemy = this.transform.position.x;
+        float distancePlayer = player.transform.position.x;
 
 
-        if (animPlayer.GetBool("cuchoFua") == false)
-        {
-            Debug.Log("SHIELD OFF");
-        }
-
-
-        DestroyFireBall();
-
+        StartCoroutine(DestroyFireBall());
+        
 
     }
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if(collision.gameObject.name == "Player")
         {
             enemyCollides = true;
+            
         }
 
 
     }
 
-   
 
-    public void DestroyFireBall()
+    IEnumerator DestroyFireBall()
     {
         if (animPlayer.GetBool("cuchoFua") == true)
         {
-            if (gameObjectEnemy.transform.position.x < player.transform.position.x-1)
+            if (Mathf.Abs(distancePlayer - distanceEnemy) < distanceThreshold)
             {
                 if (enemyCollides == true)
                 {
                     anim.SetBool("fireDestroyed", true);
-                    //Destroy(gameObject);
+                    rb.constraints = RigidbodyConstraints2D.FreezePosition;
+                    yield return new WaitForSeconds(0.5f);
+                    rb.constraints = RigidbodyConstraints2D.None;
+                    ren.enabled = false;
+                    yield return new WaitForSeconds(0.5f);                    
+                    anim.SetBool("fireDestroyed", false);
+                    ren.enabled = true;
+
+                    
 
                 }
-                else
-                {
-                    enemyCollides = true;
-                }
-                
 
             }
-
             
-            
-
+        } else if (Mathf.Abs(distancePlayer - distanceEnemy) > distanceThreshold)
+        
+        {
+            anim.SetBool("fireDestroyed", false);
+           
         }
 
-
+        
 
     }
 
-
-
-
+    /*
     public void Shield(bool value)
     {
         hasShield = value;
 
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && animPlayer.GetBool("cuchoFua") == false)
-        {
-
-            FindObjectOfType<GameManager>().DelayGameOver();
-            rb.constraints = RigidbodyConstraints2D.FreezePosition;
-            trans.position = new Vector2(rb.position.x + -2f, trans.position.y);
-
-            fireBallCollides = true;
-        }
-                
-
-    } 
+    */
 
 
     public void EnemyAppearsNow()
@@ -158,7 +129,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator EnemyAppears()
     {
-        
+        ren.enabled = true;
         rb.velocity = new Vector3(-5, 0, 0) * impulse;        
         trans.position = new Vector3(15, Random.Range(-3, 3), 0);       
         yield return null;
