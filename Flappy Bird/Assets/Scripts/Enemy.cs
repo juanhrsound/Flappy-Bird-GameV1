@@ -25,9 +25,7 @@ public class Enemy : MonoBehaviour
     private float distanceThreshold = 3f;
     private Transform trans;    
     private float impulse = 5f;
-    private bool fireBallCollides;
 
-    // Start is called before the first frame update
     void Awake()
     {
         anim = GetComponent<Animator>();        
@@ -38,23 +36,17 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void Start()
-    {     
+    public void Start()
+    {
+        InvokeRepeating("EnemyAppearsNow", Random.Range(1, 10), 2f);
 
-        
     }  
 
 
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.X))
-        {
-
-            InvokeRepeating("EnemyAppearsNow", 0f, 2f);
-                       
-
-        }           
+    void FixedUpdate()
+    {        
+          
 
         float distanceEnemy = this.transform.position.x;
         float distancePlayer = player.transform.position.x;
@@ -87,11 +79,13 @@ public class Enemy : MonoBehaviour
                 if (enemyCollides == true)
                 {
                     anim.SetBool("fireDestroyed", true);
+                    //player.anim.SetBool("cuchoHits", false);
                     rb.constraints = RigidbodyConstraints2D.FreezePosition;
                     yield return new WaitForSeconds(0.5f);
                     rb.constraints = RigidbodyConstraints2D.None;
                     ren.enabled = false;
-                    yield return new WaitForSeconds(0.5f);                    
+                    yield return new WaitForSeconds(0.5f);
+                    //player.anim.SetBool("cuchoHits", true);
                     anim.SetBool("fireDestroyed", false);
                     ren.enabled = true;
 
@@ -112,14 +106,7 @@ public class Enemy : MonoBehaviour
 
     }
 
-    /*
-    public void Shield(bool value)
-    {
-        hasShield = value;
-
-    }
-    */
-
+   
 
     public void EnemyAppearsNow()
     {

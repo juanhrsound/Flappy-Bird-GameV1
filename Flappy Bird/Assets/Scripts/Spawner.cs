@@ -21,7 +21,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        //enemyScript = enemy.GetComponent<Enemy>();
+
     }
 
 

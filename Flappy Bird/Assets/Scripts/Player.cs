@@ -5,43 +5,46 @@ using UnityEngine.Audio;
 
 public class Player : MonoBehaviour
 {
+    
     [SerializeField] public Vector3 direction;
     [SerializeField] public float jumpForce = 5f;
     [SerializeField] public Rigidbody2D rb;
     [SerializeField] public Transform trans;
     [SerializeField] public Animator anim;
-    [SerializeField] public AudioMixer mix;
-    //[SerializeField] public AudioSource audioSource;
-    [SerializeField] public AudioSource Fuaaa;
-    //[SerializeField] public AudioSource engineDown;
+    [SerializeField] public AudioSource fuaaa;
 
-   // private enum State {Cucho, CuchoShield}
-   // private State currentState = State.CuchoShield;
+
 
     public bool shieldOn;
 
-    //public GameObject gameObject;
-
-
-
     private bool jumped;
    
-    //private bool isVisible = true;
-    //private bool isReappearAfterDelayRunning = false;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         trans = GetComponent<Transform>();
+        
 
     }
 
-    private void Start()
+    public void Start()
     {
-    
+        Invoke("BodyTypeKinematic", 0f);
+        transform.position = new Vector2(-16, 0);
+        Invoke("BodyTypeDynamic", 0.2f);
+        anim.SetBool("touchingObstacle", false);
 
-    }   
+    }
+    void BodyTypeKinematic()
+    {
+        rb.bodyType = RigidbodyType2D.Static;
+    }
+    void BodyTypeDynamic()
+    {
+        rb.bodyType = RigidbodyType2D.Dynamic;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -59,16 +62,30 @@ public class Player : MonoBehaviour
 
         }
 
-        else if (other.gameObject.tag == "Enemy" && shieldOn == false)
+        else if (other.gameObject.tag == "Enemy")
+        {
+            anim.SetBool("cuchoFua", false);
+            anim.SetBool("cuchoHits", true);
+
+        }
+
+        /*else if (other.gameObject.tag == "Enemy" && shieldOn == false)
         {
             FindObjectOfType<GameManager>().DelayGameOver();
             anim.SetBool("touchingObstacle", true);           
 
         }
+        */
 
+    }
 
-
-    }   
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            anim.SetBool("cuchoHits", false);
+        }
+    }
 
 
     private void Update()
@@ -88,15 +105,27 @@ public class Player : MonoBehaviour
                 
         
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) )
         {
+            anim.SetBool("cuchoFua", true);
             BlinkObjectNow();
-            Fuaaa.Play();
+            fuaaa.Play();
             
+            
+
+
+
         }             
 
 
-    }       
+    }
+
+
+    void gettingPoint()
+    {
+        
+    }
+
 
     private void BlinkObjectNow()
     {
@@ -107,24 +136,17 @@ public class Player : MonoBehaviour
 
     IEnumerator CuchoShield()
     {
-        anim.SetBool("cuchoFua", true);
-        transform.localScale = new Vector2(2.5f, 2.5f );
-        shieldOn = true;
-        //GetComponent<Enemy>().Shield(true);
-        //Debug.Log("SHIELD ON");
 
 
+
+        transform.localScale = new Vector2(0.7f, 0.7f);
         yield return new WaitForSeconds(0.2f);
         anim.SetBool("cuchoFua", false);
+
+        anim.SetBool("cuchoHits", false);
+        
         transform.localScale = new Vector2(0.6f, 0.6f);
-        shieldOn = false;
-        //GetComponent<Enemy>().Shield(false);
-        //Debug.Log("SHIELD OFF");
-
-
-
-
-
+        shieldOn = false;   
 
     }
 

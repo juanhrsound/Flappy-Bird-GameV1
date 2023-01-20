@@ -8,45 +8,46 @@ public class GameManager : MonoBehaviour
 {
     public Text scoreText;
     public Player player;
+    public Enemy enemy;
+    public Animator anim;
 
     public GameObject playButton;
     public GameObject gameOver;
-    private int score;
-
-    
-   
+    private int score;     
     
 
     private void Awake()
     {        
         Application.targetFrameRate = 60;
-        Pause();    
+        Pause();
 
 
     }
 
     private void Start()
     {
-        Play();
+       Play();
     }
 
 
 
-    public void Play()
+    void Play()
     {
         
         score = 0;
         scoreText.text = score.ToString();
         
-
-
         playButton.SetActive(false);
         gameOver.SetActive(false);
-        
 
+        
+        FindObjectOfType<Player>().Start();
+        FindObjectOfType<Enemy>();
 
         Time.timeScale = 1f;
         player.enabled = true;
+
+        
 
 
         Porros[] porros = FindObjectsOfType<Porros>();
@@ -54,18 +55,11 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < porros.Length; i++)
         {
             Destroy(porros[i].gameObject);
-        }
+        }              
 
-        /*
-        Enemy[] enemies = FindObjectsOfType<Enemy>();
+    }
 
-        for (int i = 0; i < enemies.Length; i++)
-        {
-            Destroy(enemies[i].gameObject);
-
-        }*/
-
-    }     
+   
 
 
 
@@ -86,12 +80,7 @@ public class GameManager : MonoBehaviour
         player.enabled = false;
         gameOver.SetActive(true);
 
-    }
-
-    
-
-
-
+    }   
 
     
     public void GameOver()
@@ -100,6 +89,7 @@ public class GameManager : MonoBehaviour
         
         gameOver.SetActive(true);
         playButton.SetActive(true);
+        Pause();
         Die();
       
 

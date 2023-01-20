@@ -9,7 +9,7 @@ public class Parallax : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
 
 
@@ -43,7 +43,7 @@ public class Parallax : MonoBehaviour
         
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         meshR.material.mainTextureOffset += new Vector2(animationSpeed * Time.deltaTime, 0);
     }
