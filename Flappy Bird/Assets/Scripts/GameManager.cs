@@ -57,9 +57,7 @@ public class GameManager : MonoBehaviour
             Destroy(porros[i].gameObject);
         }              
 
-    }
-
-   
+    } 
 
 
 
@@ -98,8 +96,7 @@ public class GameManager : MonoBehaviour
 
     public void DelayGameOver()
     {
-        Invoke("GameOver", 0.5f);
-        
+        Invoke("GameOver", 0.5f);       
 
 
     }

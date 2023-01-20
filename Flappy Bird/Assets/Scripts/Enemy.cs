@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Enemy : MonoBehaviour
 {
-
-
     public Animator anim;
     public Rigidbody2D rb;
     public Player player;
@@ -15,14 +14,13 @@ public class Enemy : MonoBehaviour
     public Animator animPlayer;
     
 
-
     public bool enemyCollides;
 
     private SpriteRenderer ren;
-    private float distanceEnemy;
-    private float distancePlayer;
 
-    private float distanceThreshold = 3f;
+    private float distanceThresholdX = 3f;
+    private float distanceThresholdY = 1f;
+
     private Transform trans;    
     private float impulse = 5f;
 
@@ -44,17 +42,12 @@ public class Enemy : MonoBehaviour
 
 
 
-    void FixedUpdate()
-    {        
-          
-
-        float distanceEnemy = this.transform.position.x;
-        float distancePlayer = player.transform.position.x;
-
+    void Update()
+    {                 
+            
 
         StartCoroutine(DestroyFireBall());
         
-
     }
 
 
@@ -69,43 +62,40 @@ public class Enemy : MonoBehaviour
 
     }
 
-
+    
     IEnumerator DestroyFireBall()
     {
-        if (animPlayer.GetBool("cuchoFua") == true)
+        if (Mathf.Abs(player.transform.position.x - transform.position.x) < distanceThresholdX)
         {
-            if (Mathf.Abs(distancePlayer - distanceEnemy) < distanceThreshold)
+            if (Mathf.Abs(player.transform.position.y - transform.position.y) < distanceThresholdY)
             {
-                if (enemyCollides == true)
+                if (Input.GetMouseButtonDown(0))
                 {
-                    anim.SetBool("fireDestroyed", true);
-                    //player.anim.SetBool("cuchoHits", false);
+                    player.anim.SetBool("cuchoHits", true);
                     rb.constraints = RigidbodyConstraints2D.FreezePosition;
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.2f);
                     rb.constraints = RigidbodyConstraints2D.None;
                     ren.enabled = false;
-                    yield return new WaitForSeconds(0.5f);
-                    //player.anim.SetBool("cuchoHits", true);
+                    yield return new WaitForSeconds(0.2f);
+                    player.anim.SetBool("cuchoHits", false);
+
                     anim.SetBool("fireDestroyed", false);
                     ren.enabled = true;
-
-                    
-
                 }
-
+                
             }
-            
-        } else if (Mathf.Abs(distancePlayer - distanceEnemy) > distanceThreshold)
+
+        }
+
+
+        else
         
         {
             anim.SetBool("fireDestroyed", false);
            
-        }
-
-        
+        }        
 
     }
-
    
 
     public void EnemyAppearsNow()
@@ -122,7 +112,6 @@ public class Enemy : MonoBehaviour
         yield return null;
     }
 
-
-
+     
 
 }

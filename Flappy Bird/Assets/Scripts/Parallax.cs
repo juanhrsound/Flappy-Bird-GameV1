@@ -8,7 +8,6 @@ public class Parallax : MonoBehaviour
     private float animationSpeed;
 
 
-    // Start is called before the first frame update
     public void Start()
     {
 

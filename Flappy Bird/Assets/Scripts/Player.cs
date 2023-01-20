@@ -6,10 +6,10 @@ using UnityEngine.Audio;
 public class Player : MonoBehaviour
 {
     
-    [SerializeField] public Vector3 direction;
-    [SerializeField] public float jumpForce = 5f;
-    [SerializeField] public Rigidbody2D rb;
-    [SerializeField] public Transform trans;
+    [SerializeField] private Vector3 direction;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform trans;
     [SerializeField] public Animator anim;
     [SerializeField] public AudioSource fuaaa;
 
@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
 
     public void Start()
     {
+        
         Invoke("BodyTypeKinematic", 0f);
         transform.position = new Vector2(-16, 0);
         Invoke("BodyTypeDynamic", 0.2f);
@@ -61,21 +62,19 @@ public class Player : MonoBehaviour
             FindObjectOfType<GameManager>().IncreaseScore();
 
         }
-
+        
         else if (other.gameObject.tag == "Enemy")
         {
-            anim.SetBool("cuchoFua", false);
-            anim.SetBool("cuchoHits", true);
+            
 
         }
-
-        /*else if (other.gameObject.tag == "Enemy" && shieldOn == false)
+        
+        else if (other.gameObject.tag == "Enemy" && shieldOn == false)
         {
             FindObjectOfType<GameManager>().DelayGameOver();
             anim.SetBool("touchingObstacle", true);           
 
         }
-        */
 
     }
 
@@ -83,7 +82,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            anim.SetBool("cuchoHits", false);
+            anim.SetBool("cuchoHits", true);
         }
     }
 
@@ -104,27 +103,26 @@ public class Player : MonoBehaviour
         }
                 
         
-
-        if (Input.GetMouseButtonDown(0) )
+        
+        if (Input.GetMouseButtonDown(0))
         {
             anim.SetBool("cuchoFua", true);
-            BlinkObjectNow();
-            fuaaa.Play();
+            BlinkObjectNow();                    
+
+        } 
+
+        if(anim.GetBool("cuchoHits"))
+        {
             
-            
-
-
-
-        }             
-
-
+        }
     }
 
-
-    void gettingPoint()
+    /*
+    public void cuchoHits()
     {
-        
+        fuaaa.Play();
     }
+    */
 
 
     private void BlinkObjectNow()
@@ -136,29 +134,15 @@ public class Player : MonoBehaviour
 
     IEnumerator CuchoShield()
     {
-
-
-
-        transform.localScale = new Vector2(0.7f, 0.7f);
-        yield return new WaitForSeconds(0.2f);
-        anim.SetBool("cuchoFua", false);
-
-        anim.SetBool("cuchoHits", false);
         
-        transform.localScale = new Vector2(0.6f, 0.6f);
+        transform.localScale = new Vector2(0.7f, 0.7f);
+        yield return new WaitForSeconds(0.1f);
+
+        anim.SetBool("cuchoFua", false);
+        transform.localScale = new Vector2(0.6f, 0.6f);        
         shieldOn = false;   
 
     }
-
     
-
-    
-     
-
-
-
-
-
-
 
 }
