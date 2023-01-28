@@ -5,39 +5,33 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     public GameObject prefabPorros;
-    public GameObject prefabEnemy;
+    public GameObject prefabFire;
 
     public float spwanRate = 1f;
-    public float spawnRateEnemy = 1f;
+    public float spawnRateFire = 1f;
 
     public float minHeight = -0.5f;
     public float maxHeight = 0.5f;
     public int numPrefabs = 10;
-    public bool enemyIncoming = false;
+    public bool fireIncoming = false;
     
-
-    //public GameObject enemy;
-    private Enemy enemyScript;
 
     private void Awake()
     {
 
     }
 
-
-
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && enemyIncoming == false)
+        if (Input.GetKeyDown(KeyCode.X) && fireIncoming == false)
         {
             
             spwanRate = 10f;
             CancelInvoke(nameof(SpawnPorros));
             OnEnable();            
-            enemyIncoming = true;
+            fireIncoming = true;
 
-            if (enemyIncoming == true)
+            if (fireIncoming == true)
             {                
                 SpawnerActsNow();
             }
@@ -54,10 +48,7 @@ public class Spawner : MonoBehaviour
         
     }
 
-    public void OnEnableEnemy()
-    {
-        InvokeRepeating(nameof(SpawnEnemy), spawnRateEnemy, spawnRateEnemy);
-    }
+    
 
 
 
@@ -76,10 +67,6 @@ public class Spawner : MonoBehaviour
               
     }
 
-    void SpawnEnemy()
-    {
-        GameObject enemy = Instantiate(prefabEnemy, transform.position, Quaternion.identity);
-    }
 
 
 
@@ -91,10 +78,10 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnerChanges()
     {        
-        yield return new WaitForSeconds(10f);        
+        yield return new WaitForSeconds(2f);        
         spwanRate = 1f;
         OnEnable();
-        enemyIncoming = false;
+        fireIncoming = false;
        
 
     }

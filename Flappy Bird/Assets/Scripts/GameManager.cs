@@ -7,47 +7,49 @@ using UnityEngine .UI;
 public class GameManager : MonoBehaviour
 {
     public Text scoreText;
-    public Player player;
-    public Enemy enemy;
-    public Animator anim;
+    private int score;
 
+    public Text scoreTextFire;
+    public Slider slider;
+
+    private int scoreFire;
+
+    public Player player;
     public GameObject playButton;
     public GameObject gameOver;
-    private int score;     
-    
 
+           
     private void Awake()
     {        
         Application.targetFrameRate = 60;
         Pause();
-
 
     }
 
     private void Start()
     {
        Play();
+       slider = GetComponent<Slider>();
     }
-
-
 
     void Play()
     {
-        
+
         score = 0;
+        scoreFire = 0;
+
         scoreText.text = score.ToString();
-        
+        scoreTextFire.text = scoreFire.ToString();
+
         playButton.SetActive(false);
         gameOver.SetActive(false);
 
         
         FindObjectOfType<Player>().Start();
-        FindObjectOfType<Enemy>();
+        FindObjectOfType<Fire>();
 
         Time.timeScale = 1f;
-        player.enabled = true;
-
-        
+        player.enabled = true;        
 
 
         Porros[] porros = FindObjectsOfType<Porros>();
@@ -58,7 +60,6 @@ public class GameManager : MonoBehaviour
         }              
 
     } 
-
 
 
     public void Pause()
@@ -88,8 +89,7 @@ public class GameManager : MonoBehaviour
         gameOver.SetActive(true);
         playButton.SetActive(true);
         Pause();
-        Die();
-      
+        Die();      
 
     }
 
@@ -109,5 +109,18 @@ public class GameManager : MonoBehaviour
              
         
     }
+
+    public void IncreaseScoreFire()
+
+    {
+        scoreFire++;
+        slider.maxValue = scoreFire;
+
+        //scoreTextFire.text = scoreFire.ToString();
+        
+
+    }
+
+
 
 }
