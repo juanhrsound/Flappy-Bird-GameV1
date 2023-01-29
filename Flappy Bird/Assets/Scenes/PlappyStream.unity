@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7735849, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -806,9 +806,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   fuaaa: {fileID: 0}
   fire: {fileID: 0}
-  initialFire: 0
-  minFire: 0
-  maxFire: 8
 --- !u!58 &474534168
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1011,13 +1008,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd69b648da45143899415c8432f0bed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sliderFire: {fileID: 1552313008}
   scoreText: {fileID: 339199657}
-  scoreTextFire: {fileID: 265260577}
+  fireMax: 0
   player: {fileID: 1172398265}
-  fire: {fileID: 0}
   playButton: {fileID: 1940515465}
   gameOver: {fileID: 834603177}
-  firebar: {fileID: 0}
 --- !u!4 &708684065
 Transform:
   m_ObjectHideFlags: 0
@@ -1600,9 +1596,6 @@ MonoBehaviour:
   anim: {fileID: 1172398262}
   fuaaa: {fileID: 1543649751}
   fire: {fileID: 1393331679}
-  initialFire: 0
-  minFire: 0
-  maxFire: 8
 --- !u!114 &1393331679 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6913295090512562037, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
@@ -1757,8 +1750,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1552313007}
   - component: {fileID: 1552313008}
+  - component: {fileID: 1552313009}
   m_Layer: 5
-  m_Name: FireBar
+  m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1825,18 +1819,32 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 251141319}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 8
-  m_WholeNumbers: 0
-  m_Value: 8
+  m_MaxValue: 2
+  m_WholeNumbers: 1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1552313009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552313006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b60efedf9ccf488b98dcddc38a71a2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  porrosElement: {fileID: 0}
+  executed: 0
 --- !u!1 &1940515465
 GameObject:
   m_ObjectHideFlags: 0

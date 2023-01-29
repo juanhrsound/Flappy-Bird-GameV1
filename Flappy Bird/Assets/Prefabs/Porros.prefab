@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 6366703928598140134}
   - component: {fileID: 5964428896553931550}
   - component: {fileID: 4357138810973151957}
-  - component: {fileID: 45351817872395076}
+  - component: {fileID: 6879959807303978663}
   m_Layer: 0
   m_Name: plon
   m_TagString: Obstacle
@@ -244,19 +244,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &45351817872395076
+--- !u!114 &6879959807303978663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2484552492942898308}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 314c3f44da417427fae0620d9dc5257d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  sprite: {fileID: 6366703928598140134}
 --- !u!1 &8001707619642716095
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 8831816149263588292}
   - component: {fileID: 5927459569860260646}
   - component: {fileID: 4202625614028222735}
+  - component: {fileID: 8678168707631250068}
   m_Layer: 0
   m_Name: plon-top
   m_TagString: Obstacle
@@ -380,3 +381,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8678168707631250068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8001707619642716095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 314c3f44da417427fae0620d9dc5257d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 8831816149263588292}

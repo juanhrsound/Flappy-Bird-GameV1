@@ -71,6 +71,10 @@ public class Fire : MonoBehaviour
 
     }
 
+
+
+
+    /*
     public void FirePoints(int points)
     {
         this.firePoints += points;
@@ -80,7 +84,7 @@ public class Fire : MonoBehaviour
             this.firePoints = maxFire;
         }
     }
-
+    */
 
 
     public void FireAppearsNow()

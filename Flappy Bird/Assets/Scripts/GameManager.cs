@@ -6,13 +6,11 @@ using UnityEngine .UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Slider sliderFire;
     public Text scoreText;
+    
     private int score;
-
-    public Text scoreTextFire;
-    public Slider slider;
-
-    private int scoreFire;
+    public int fireMax;
 
     public Player player;
     public GameObject playButton;
@@ -20,7 +18,8 @@ public class GameManager : MonoBehaviour
 
            
     private void Awake()
-    {        
+    {
+
         Application.targetFrameRate = 60;
         Pause();
 
@@ -28,18 +27,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-       Play();
-       slider = GetComponent<Slider>();
+       Play();       
     }
+
 
     void Play()
     {
 
         score = 0;
-        scoreFire = 0;
-
         scoreText.text = score.ToString();
-        scoreTextFire.text = scoreFire.ToString();
+
+        sliderFire.value = 0;
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
@@ -57,9 +55,12 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < porros.Length; i++)
         {
             Destroy(porros[i].gameObject);
-        }              
+        }
 
-    } 
+
+    }
+
+    
 
 
     public void Pause()
@@ -113,13 +114,13 @@ public class GameManager : MonoBehaviour
     public void IncreaseScoreFire()
 
     {
-        scoreFire++;
-        slider.maxValue = scoreFire;
+        sliderFire.value += 1;
+        fireMax++;
 
-        //scoreTextFire.text = scoreFire.ToString();
-        
 
     }
+
+
 
 
 

@@ -13,11 +13,8 @@ public class Player : MonoBehaviour
     [SerializeField] public Animator anim;
     [SerializeField] public AudioSource fuaaa;
 
-    public Fire fire;
-
-    
-
-    
+    public Fire fire; 
+        
 
     private bool jumped;
    
@@ -68,7 +65,6 @@ public class Player : MonoBehaviour
     }  
 
 
-    
 
     private void Update()
     {
@@ -88,7 +84,7 @@ public class Player : MonoBehaviour
    
     }
        
-    
+    // luego hacer esto cuando tengamos el sprite de cucho.
     /*
     IEnumerator CuchoShield()
     {
