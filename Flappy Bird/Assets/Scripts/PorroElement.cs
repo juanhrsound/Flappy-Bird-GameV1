@@ -6,6 +6,7 @@ public class PorroElement : MonoBehaviour
 {
 
     public SpriteRenderer sprite;
+    //private FireBar firebar;
 
 
 
@@ -15,14 +16,14 @@ public class PorroElement : MonoBehaviour
     }
 
     private void Update()
-    { /*       
+    {   /*    
         if (firebar.executed == true)
         {
-            
+            Debug.Log("hola");
             sprite.enabled = false;
         }
+        
         */
-
     }
 
 

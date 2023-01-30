@@ -13,7 +13,6 @@ public class Spawner : MonoBehaviour
     public float minHeight = -0.5f;
     public float maxHeight = 0.5f;
     public int numPrefabs = 10;
-    public bool fireIncoming = false;
     
 
     private void Awake()
@@ -21,20 +20,22 @@ public class Spawner : MonoBehaviour
 
     }
 
+
+    private void Start()
+    {
+        //prefabPorros.SetActive(true);
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && fireIncoming == false)
+        if (Input.GetKeyDown(KeyCode.X))
         {
             
             spwanRate = 10f;
             CancelInvoke(nameof(SpawnPorros));
             OnEnable();            
-            fireIncoming = true;
 
-            if (fireIncoming == true)
-            {                
-                SpawnerActsNow();
-            }
+           
         }
 
        
@@ -81,10 +82,38 @@ public class Spawner : MonoBehaviour
         yield return new WaitForSeconds(2f);        
         spwanRate = 1f;
         OnEnable();
-        fireIncoming = false;
        
 
     }
+
+    
+
+
+
+    IEnumerator PowerOn()
+    {
+        
+        spwanRate = 0.3f;
+        CancelInvoke(nameof(SpawnPorros));
+        OnEnable();
+        yield return new WaitForSeconds(8.88f);
+        spwanRate = 20f;
+        CancelInvoke(nameof(SpawnPorros));
+        OnEnable();
+        yield return new WaitForSeconds(5f);
+        spwanRate = 1f;
+        CancelInvoke(nameof(SpawnPorros));
+        OnEnable();
+
+    }
+
+
+    public void PowerOff()
+    {
+        prefabPorros.SetActive(true);
+
+    }
+
 
 
 }

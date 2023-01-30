@@ -19,6 +19,7 @@ public class Parallax : MonoBehaviour
 
     IEnumerator LerpAnimationSpeed()
     {
+        
         float currentTime = 0f;
         float animationDuration = 3f;
         float startValue = 10f;

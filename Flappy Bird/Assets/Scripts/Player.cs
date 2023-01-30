@@ -12,18 +12,22 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform trans;
     [SerializeField] public Animator anim;
     [SerializeField] public AudioSource fuaaa;
+    private bool jumped;
+    public bool isFua = false;
 
-    public Fire fire; 
+    public FireBar firebar;
         
 
-    private bool jumped;
+    
    
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        trans = GetComponent<Transform>();        
+        trans = GetComponent<Transform>();
+        firebar = GetComponent<FireBar>();
+
 
     }
 
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(-16, 0);
         Invoke("BodyTypeDynamic", 0.2f);
         anim.SetBool("touchingObstacle", false);
+
 
     }
 
@@ -48,21 +53,37 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Obstacle")
+        
+        if (other.gameObject.tag == "Obstacle" && isFua == true)
         {
+
+
+        }
+
+        else if (other.gameObject.tag == "Obstacle" && isFua == false)
+        {
+
 
             FindObjectOfType<GameManager>().DelayGameOver();
             anim.SetBool("touchingObstacle", true);
 
 
         }
+
+
         else if (other.gameObject.tag == "Scoring")
         {
             FindObjectOfType<GameManager>().IncreaseScore();
 
         }       
 
-    }  
+    }
+
+    public void FUAState(bool value)
+    {
+        isFua = value;
+    }
+
 
 
 
@@ -80,6 +101,8 @@ public class Player : MonoBehaviour
         {
             jumped = false;
         }
+
+
                 
    
     }
