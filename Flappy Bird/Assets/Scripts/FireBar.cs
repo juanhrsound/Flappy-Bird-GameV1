@@ -7,59 +7,49 @@ public class FireBar : MonoBehaviour
 {
     private Slider slider;
     public GameObject porro;
-
-    public enum States {idle, FUA}
-    public States currentState = States.idle;
-
+    private bool plonReady;
+  
 
 
     void Start()
     {
-        porro = GetComponent<GameObject>();
         slider = GetComponent<Slider>();
-        currentState = States.idle;
 
 
     }
 
     private void Update()
     {
-        
         StartCoroutine(SliderValue());
-        
-        
-
     }
 
     IEnumerator SliderValue()
     {
         
-        if (slider.value == 2)
+        if (slider != null && slider.value >= 2)
         {            
             if (Input.GetMouseButtonDown(0))
             {
+
                 slider.value = 0;                
-               //FindObjectOfType<Parallax>().LerpAnimationSpeed();
                 FindObjectOfType<Player>().FUAState(true);
                 FindObjectOfType<Spawner>().StartCoroutine("PowerOn");
+                Time.timeScale *= 3;
 
+                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(13.55f);
 
-                Debug.Log("ON");
-
-                yield return new WaitForSeconds(8.88f);
-                yield return new WaitForSeconds(5.55f);
-
-                Debug.Log("OFF");
-
+                Time.timeScale = 1;
                 FindObjectOfType<Spawner>().PowerOff();
                 FindObjectOfType<Player>().FUAState(false);
-
                 
 
-            } 
 
-        } 
-       
+
+            }
+
+        }
+        
         
 
     }

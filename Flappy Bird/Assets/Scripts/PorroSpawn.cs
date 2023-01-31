@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PorroSpawn : MonoBehaviour
-{
+{/*
     public GameObject gameObject;
 
 
@@ -31,7 +31,7 @@ public class PorroSpawn : MonoBehaviour
 
     }
 
-
+    */
 
 
 

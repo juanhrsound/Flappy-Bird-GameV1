@@ -37,8 +37,13 @@ public class Fire : MonoBehaviour
     {
         initialFire = minFire;
         coll.enabled = true;
-        InvokeRepeating("FireAppearsNow", Random.Range(1, 2), 2f);
+        Fireeeee();
 
+    }
+
+   public void Fireeeee()
+    {
+        InvokeRepeating("FireAppearsNow", Random.Range(1, 2), 2f);
     }
 
    
@@ -71,22 +76,6 @@ public class Fire : MonoBehaviour
 
     }
 
-
-
-
-    /*
-    public void FirePoints(int points)
-    {
-        this.firePoints += points;
-
-        if(this.firePoints >= maxFire)
-        {
-            this.firePoints = maxFire;
-        }
-    }
-    */
-
-
     public void FireAppearsNow()
     {
         StartCoroutine(FireAppears());
@@ -99,9 +88,12 @@ public class Fire : MonoBehaviour
         ren.enabled = true;
         anim.SetBool("fireDestroyed", false);
         rb.velocity = new Vector3(-5, 0, 0) * impulse;
-        trans.position = new Vector3(15, Random.Range(-3, 3), 0);
+        trans.position = new Vector3(15, Random.Range(-3.89f, 8.21f), 0);
         yield return null;
     }
+
+
+    
 
 
 

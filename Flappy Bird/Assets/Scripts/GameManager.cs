@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine .UI;
+using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
@@ -9,30 +9,26 @@ public class GameManager : MonoBehaviour
     public Slider sliderFire;
     public Text scoreText;
     
+    
     private int score;
     public int fireMax;
 
     public Player player;
     public GameObject playButton;
     public GameObject gameOver;
+    public GameObject credits;
 
-           
-    private void Awake()
+
+    public void Awake()
     {
 
         Application.targetFrameRate = 60;
         Pause();
 
     }
-
-    private void Start()
-    {
-       Play();       
-    }
-
-
+    
     void Play()
-    {
+    {          
 
         score = 0;
         scoreText.text = score.ToString();
@@ -41,8 +37,8 @@ public class GameManager : MonoBehaviour
 
         playButton.SetActive(false);
         gameOver.SetActive(false);
+        credits.SetActive(false);
 
-        
         FindObjectOfType<Player>().Start();
         FindObjectOfType<Fire>();
 
@@ -58,9 +54,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-    }
-
-    
+    }   
 
 
     public void Pause()
@@ -85,10 +79,10 @@ public class GameManager : MonoBehaviour
     
     public void GameOver()
     {
-        
-        
+
         gameOver.SetActive(true);
-        playButton.SetActive(true);
+        playButton.SetActive(true);        
+        
         Pause();
         Die();      
 
@@ -97,8 +91,8 @@ public class GameManager : MonoBehaviour
 
     public void DelayGameOver()
     {
-        Invoke("GameOver", 0.5f);       
-
+        Invoke("GameOver", 0.5f);
+        
 
     }
 
@@ -119,9 +113,4 @@ public class GameManager : MonoBehaviour
 
 
     }
-
-
-
-
-
 }

@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(-16, 0);
         Invoke("BodyTypeDynamic", 0.2f);
         anim.SetBool("touchingObstacle", false);
+        isFua = false;
 
 
     }
@@ -67,6 +68,13 @@ public class Player : MonoBehaviour
             FindObjectOfType<GameManager>().DelayGameOver();
             anim.SetBool("touchingObstacle", true);
 
+
+        }
+
+        else if(other.gameObject.tag == "KillZone")
+        {
+            FindObjectOfType<GameManager>().DelayGameOver();
+            anim.SetBool("touchingObstacle", true);
 
         }
 
