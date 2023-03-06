@@ -5,25 +5,22 @@ using UnityEngine;
 public class Parallax : MonoBehaviour
 {
     public MeshRenderer meshR;
-    private float animationSpeed;
+    public float animationSpeed = 0.5f;
+        
 
-
-    public void Start()
+    void Awake()
     {
-
-
-        StartCoroutine(LerpAnimationSpeed());
-
+        meshR = GetComponent<MeshRenderer>();
+        
     }
 
-
-    IEnumerator LerpAnimationSpeed()
+    public IEnumerator LerpAnimationSpeed()
     {
-        
+
         float currentTime = 0f;
-        float animationDuration = 3f;
+        float animationDuration = 0f;
         float startValue = 10f;
-        float endValue = 0.25f;
+        float endValue = 50f;
 
         while (currentTime < animationDuration)
         {
@@ -31,15 +28,7 @@ public class Parallax : MonoBehaviour
             animationSpeed = Mathf.Lerp(startValue, endValue, currentTime / animationDuration);
             yield return null;
         }
-        //yield return new WaitForSeconds(5);
 
-    }
-
-
-    void Awake()
-    {
-        meshR = GetComponent<MeshRenderer>();
-        
     }
 
     private void FixedUpdate()

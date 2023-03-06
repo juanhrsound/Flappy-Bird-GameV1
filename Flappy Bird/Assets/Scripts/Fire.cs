@@ -12,6 +12,8 @@ public class Fire : MonoBehaviour
     public GameManager gameManager;
     public Collider2D coll;
     public Animator animPlayer;
+
+    public AudioSource fireSound; 
     
     private SpriteRenderer ren;    
     private Transform trans;    
@@ -63,6 +65,7 @@ public class Fire : MonoBehaviour
 
         coll.enabled = false;
         anim.SetBool("fireDestroyed", true);
+        fireSound.Play();
         rb.constraints = RigidbodyConstraints2D.FreezePosition;
         yield return new WaitForSeconds(0.2f);
         ren.enabled = false;       

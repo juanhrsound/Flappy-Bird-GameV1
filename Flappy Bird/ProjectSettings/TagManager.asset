@@ -8,6 +8,7 @@ TagManager:
   - Scoring
   - Enemy
   - KillZone
+  - almostBurned
   layers:
   - Default
   - TransparentFX

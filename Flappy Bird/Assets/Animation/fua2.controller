@@ -110,7 +110,7 @@ AnimatorStateMachine:
     m_Position: {x: 510, y: -160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6902547728639532323}
-    m_Position: {x: 590, y: -10, z: 0}
+    m_Position: {x: 640, y: 40, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -259,7 +259,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: cuchoFua
-  m_Speed: 1
+  m_Speed: 0.1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -1655263326415294582}

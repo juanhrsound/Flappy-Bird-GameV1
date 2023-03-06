@@ -12,21 +12,27 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform trans;
     [SerializeField] public Animator anim;
     [SerializeField] public AudioSource fuaaa;
+
+    public AudioClip Scoring;
+    
+    
+
+
     private bool jumped;
+
     public bool isFua = false;
 
-    public FireBar firebar;
-        
+    //public FireBar firebar;
+    public AudioSource scorePoint;
 
-    
-   
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         trans = GetComponent<Transform>();
-        firebar = GetComponent<FireBar>();
+        //firebar = GetComponent<FireBar>();
+        
 
 
     }
@@ -38,7 +44,10 @@ public class Player : MonoBehaviour
         transform.position = new Vector2(-16, 0);
         Invoke("BodyTypeDynamic", 0.2f);
         anim.SetBool("touchingObstacle", false);
+        anim.SetBool("cuchoFua", false);
         isFua = false;
+        rb.isKinematic = false;
+
 
 
     }
@@ -75,6 +84,8 @@ public class Player : MonoBehaviour
         {
             FindObjectOfType<GameManager>().DelayGameOver();
             anim.SetBool("touchingObstacle", true);
+                      
+                        
 
         }
 
@@ -82,22 +93,23 @@ public class Player : MonoBehaviour
         else if (other.gameObject.tag == "Scoring")
         {
             FindObjectOfType<GameManager>().IncreaseScore();
+            scorePoint.PlayOneShot(Scoring);
 
-        }       
+        }
+
+       
 
     }
+
 
     public void FUAState(bool value)
     {
         isFua = value;
     }
 
-
-
-
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             
@@ -109,25 +121,9 @@ public class Player : MonoBehaviour
         {
             jumped = false;
         }
-
-
-                
+           
    
     }
        
-    // luego hacer esto cuando tengamos el sprite de cucho.
-    /*
-    IEnumerator CuchoShield()
-    {
-        
-        transform.localScale = new Vector2(0.7f, 0.7f);
-
-        yield return new WaitForSeconds(0.5f);
-
-        anim.SetBool("cuchoFua", false);
-        transform.localScale = new Vector2(0.6f, 0.6f);        
-
-    }
-    */
-
+   
 }

@@ -6,9 +6,7 @@ public class Porros : MonoBehaviour
 {
     public float speed = 10f;
     private float leftEdge;
-  
-
-
+    
 
     private void Start()
     {
@@ -31,4 +29,9 @@ public class Porros : MonoBehaviour
     }
 
     
+
+
+
+
+
 }
