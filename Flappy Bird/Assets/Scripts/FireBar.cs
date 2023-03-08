@@ -11,7 +11,7 @@ public class FireBar : MonoBehaviour
     public Animator anim;
     public AudioSource firebarLoop;
     public AudioClip fireClick;
-
+    
 
 
 
@@ -64,7 +64,10 @@ public class FireBar : MonoBehaviour
                 if (firebarLoop.isPlaying)
                 {
                     firebarLoop.Stop();
+                    FindObjectOfType<Player>().fuaaa.Play();
+
                 }
+                               
 
                 if (FindObjectOfType<Spawner>().mainMusic.isPlaying)
                 {

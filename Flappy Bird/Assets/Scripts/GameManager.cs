@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
 
         FindObjectOfType<FireBar>().TheFireBar(fireMax);
         FindObjectOfType<Player>().Start();
-        //FindObjectOfType<Fire>();
 
         Time.timeScale = 1f;
         player.enabled = true;        
@@ -66,21 +65,20 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-
     public void Pause()
     {
+        
         Time.timeScale = 0f;
         player.enabled = false;
         gameOver.SetActive(false);
-
+        
 
     }
-
     
 
     public void Die()
     {
+        
         Time.timeScale = 0f;
         player.enabled = false;
         gameOver.SetActive(true);
@@ -92,16 +90,28 @@ public class GameManager : MonoBehaviour
     
     public void GameOver()
     {
-
+        
         gameOver.SetActive(true);
         playButton.SetActive(true);
         FindObjectOfType<Spawner>().mainMusic.Stop();
         FindObjectOfType<Spawner>().hiHat.Stop();
+        FindObjectOfType<Player>().fuaaa.Stop();
 
         if (FindObjectOfType<AlmostBurned>().audioSource.isPlaying)
         {
             FindObjectOfType<AlmostBurned>().audioSource.Stop();
         }
+
+        if (FindObjectOfType<Player>().fuaaa.isPlaying)
+        {
+            FindObjectOfType<Player>().fuaaa.Stop();
+        }
+
+        if (FindObjectOfType<FireBar>().firebarLoop.isPlaying)
+        {
+            FindObjectOfType<FireBar>().firebarLoop.Stop();
+        }
+
 
         Pause();
         Die();      
@@ -111,7 +121,7 @@ public class GameManager : MonoBehaviour
 
     public void DelayGameOver()
     {
-        Invoke("GameOver", 0.5f);
+        Invoke("GameOver", 0.2f);
         
 
     }

@@ -13,7 +13,8 @@ public class Fire : MonoBehaviour
     public Collider2D coll;
     public Animator animPlayer;
 
-    public AudioSource fireSound; 
+    public AudioSource fireSound;
+    //public AudioSource fireBall;
     
     private SpriteRenderer ren;    
     private Transform trans;    
@@ -46,6 +47,7 @@ public class Fire : MonoBehaviour
    public void Fireeeee()
     {
         InvokeRepeating("FireAppearsNow", Random.Range(1, 2), 2f);
+        //fireSound.Play();
     }
 
    

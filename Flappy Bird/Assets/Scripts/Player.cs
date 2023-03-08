@@ -14,15 +14,16 @@ public class Player : MonoBehaviour
     [SerializeField] public AudioSource fuaaa;
 
     public AudioClip Scoring;
-    
-    
+    public AudioClip gameOverExplosion;
+    public AudioSource gameOverAudioS;
+
+    public AudioClip fuaStatePower;
 
 
     private bool jumped;
 
     public bool isFua = false;
 
-    //public FireBar firebar;
     public AudioSource scorePoint;
 
 
@@ -31,7 +32,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         trans = GetComponent<Transform>();
-        //firebar = GetComponent<FireBar>();
         
 
 
@@ -61,6 +61,12 @@ public class Player : MonoBehaviour
         rb.bodyType = RigidbodyType2D.Dynamic;
     }
 
+    private void gameOverSound()
+    {
+        gameOverAudioS.PlayOneShot(gameOverExplosion);
+
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         
@@ -73,19 +79,15 @@ public class Player : MonoBehaviour
         else if (other.gameObject.tag == "Obstacle" && isFua == false)
         {
 
-
-            FindObjectOfType<GameManager>().DelayGameOver();
-            anim.SetBool("touchingObstacle", true);
-
+            Death();
 
         }
 
         else if(other.gameObject.tag == "KillZone")
         {
-            FindObjectOfType<GameManager>().DelayGameOver();
-            anim.SetBool("touchingObstacle", true);
-                      
-                        
+
+            Death();
+
 
         }
 
@@ -98,6 +100,14 @@ public class Player : MonoBehaviour
         }
 
        
+
+    }
+
+    private void Death()
+    {
+        FindObjectOfType<GameManager>().DelayGameOver();
+        anim.SetBool("touchingObstacle", true);
+        gameOverSound();
 
     }
 
