@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6179066351897277080}
   - component: {fileID: 6913295090512562037}
   - component: {fileID: 5793707264978490936}
-  - component: {fileID: 1897650539565378451}
+  - component: {fileID: 3492766676885588907}
   m_Layer: 0
   m_Name: fireball2
   m_TagString: Enemy
@@ -266,7 +266,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &1897650539565378451
+--- !u!82 &3492766676885588907
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,12 +275,12 @@ AudioSource:
   m_GameObject: {fileID: 6179066351897277085}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  OutputAudioMixerGroup: {fileID: -7771749731903989337, guid: ec3cb471e806444239f9c89fc7899fdb, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 10815138674cf4a438e4b4e1826120e0, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

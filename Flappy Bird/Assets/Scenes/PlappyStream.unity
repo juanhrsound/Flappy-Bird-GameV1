@@ -477,14 +477,14 @@ MonoBehaviour:
   currentImage: {fileID: 327105589}
   chooseSprite:
   - {fileID: 21300000, guid: e37edb95edf4742658a4793947ea679f, type: 3}
-  - {fileID: 21300000, guid: e4ab3670df2be4ae18f926211aec8def, type: 3}
-  - {fileID: 21300000, guid: a36135091e14f4b91a168c76f2f9a51d, type: 3}
-  - {fileID: 21300000, guid: 498027a55ad7048bc85f375b5c254aad, type: 3}
-  - {fileID: 21300000, guid: b052fa4c21e0b4687b7cc1663a45c039, type: 3}
-  - {fileID: 21300000, guid: 1ed01ee75671b46ad8ab859f3d51c011, type: 3}
-  - {fileID: 21300000, guid: a97b3c51184c94c47a993563e70cf084, type: 3}
-  - {fileID: 21300000, guid: ee4bd87edba7c436a9667e1c2a42482f, type: 3}
-  - {fileID: 21300000, guid: e0b163c0a9519413b9aecf2ed3e2ff4f, type: 3}
+  - {fileID: 21300000, guid: 95ba6a27c1b3e4a7fb3f269b6ea1fe11, type: 3}
+  - {fileID: 21300000, guid: b0c0499e458344493a14dc2173f49478, type: 3}
+  - {fileID: 21300000, guid: f354fcd90d47c44c79149b040e3150ac, type: 3}
+  - {fileID: 21300000, guid: f161ce141ce854eae843d6dac5f8ee83, type: 3}
+  - {fileID: 21300000, guid: 98d7b3471cf2842e1991b70756d98802, type: 3}
+  - {fileID: 21300000, guid: 026da89fd445b4feab171d58690114fc, type: 3}
+  - {fileID: 21300000, guid: d5062dadaf9fa491ea5259761510ad82, type: 3}
+  - {fileID: 21300000, guid: 2156aaee224d64688ae737d86608f7d0, type: 3}
   anim: {fileID: 327105592}
   firebarLoop: {fileID: 327105593}
   fireClick: {fileID: 8300000, guid: 0d01bd8983e174696be5bf6f2488a461, type: 3}
@@ -945,9 +945,6 @@ MonoBehaviour:
   mainMusic: {fileID: 692976972}
   hiHat: {fileID: 692976973}
   introM: {fileID: 692976974}
-  fuaState:
-  - {fileID: 8300000, guid: f32c308e0b54b446798db2673924c801, type: 3}
-  - {fileID: 8300000, guid: cfd22b6093b684dd18067401b1a1eaf8, type: 3}
   audioMixer: {fileID: 24100000, guid: ec3cb471e806444239f9c89fc7899fdb, type: 2}
   fadeDuration: 1
 --- !u!4 &692976971
@@ -2294,6 +2291,7 @@ MonoBehaviour:
   Scoring: {fileID: 8300000, guid: ee2200a73402d48c1a364d4eec6f9ddf, type: 3}
   gameOverExplosion: {fileID: 8300000, guid: f2579e057b004437596bcaaaaa7d2362, type: 3}
   gameOverAudioS: {fileID: 1172398269}
+  fuaStatePower: {fileID: 0}
   isFua: 0
   scorePoint: {fileID: 1172398270}
 --- !u!82 &1172398266

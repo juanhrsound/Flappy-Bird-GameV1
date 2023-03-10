@@ -14,7 +14,7 @@ public class Fire : MonoBehaviour
     public Animator animPlayer;
 
     public AudioSource fireSound;
-    //public AudioSource fireBall;
+    public AudioSource fireBallMoving;
     
     private SpriteRenderer ren;    
     private Transform trans;    
@@ -64,7 +64,11 @@ public class Fire : MonoBehaviour
 
     IEnumerator AnimationFire()
     {
-
+        if (fireBallMoving.isPlaying)
+        {
+            fireBallMoving.Stop();
+        }
+        
         coll.enabled = false;
         anim.SetBool("fireDestroyed", true);
         fireSound.Play();
@@ -89,6 +93,7 @@ public class Fire : MonoBehaviour
 
     IEnumerator FireAppears()
     {
+        fireBallMoving.Play();
         coll.enabled = true;
         ren.enabled = true;
         anim.SetBool("fireDestroyed", false);

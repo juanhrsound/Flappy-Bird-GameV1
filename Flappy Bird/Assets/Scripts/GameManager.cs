@@ -111,6 +111,11 @@ public class GameManager : MonoBehaviour
         {
             FindObjectOfType<FireBar>().firebarLoop.Stop();
         }
+        if (FindObjectOfType<Fire>().fireBallMoving.isPlaying)
+        {
+            FindObjectOfType<Fire>().fireBallMoving.Stop();
+        }
+        
 
 
         Pause();
