@@ -972,7 +972,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 5286715597002997422, guid: ec3cb471e806444239f9c89fc7899fdb, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 7092f9063952c41339e106d7b3f2b8f4, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7428dfb306b8a4f43b6b32406171fbef, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3156,6 +3156,11 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &2055985217 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3492766676885588907, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+  m_PrefabInstance: {fileID: 4929330547650495829}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4929330547650495829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3163,22 +3168,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1897650539565378451, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
-      propertyPath: Loop
-      value: 1
+    - target: {fileID: 3492766676885588907, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+      propertyPath: m_Pitch
+      value: 0.88
       objectReference: {fileID: 0}
-    - target: {fileID: 1897650539565378451, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+    - target: {fileID: 3492766676885588907, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+      propertyPath: m_Volume
+      value: 0.707
+      objectReference: {fileID: 0}
+    - target: {fileID: 3492766676885588907, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 19ecad3643d7e4d409ba76dbaa9f4345, type: 3}
-    - target: {fileID: 1897650539565378451, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1897650539565378451, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+      objectReference: {fileID: 8300000, guid: 3b35e5dbd7f7b4df8aba896c5e729b75, type: 3}
+    - target: {fileID: 3492766676885588907, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
-      objectReference: {fileID: -7771749731903989337, guid: ec3cb471e806444239f9c89fc7899fdb, type: 2}
+      objectReference: {fileID: 2100130698434178906, guid: ec3cb471e806444239f9c89fc7899fdb, type: 2}
+    - target: {fileID: 5793707264978490936, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5793707264978490936, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
       propertyPath: m_PlayOnAwake
       value: 0
@@ -3299,6 +3308,9 @@ PrefabInstance:
       propertyPath: scoreTextFire
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1897650539565378451, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+    - target: {fileID: 6913295090512562037, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+      propertyPath: fireBallMoving
+      value: 
+      objectReference: {fileID: 2055985217}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
