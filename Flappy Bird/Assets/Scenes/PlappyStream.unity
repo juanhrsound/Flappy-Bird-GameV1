@@ -2304,7 +2304,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8640275987810650330, guid: ec3cb471e806444239f9c89fc7899fdb, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 627ad923673394449aeb6c4323532d54, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cfd22b6093b684dd18067401b1a1eaf8, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -2512,6 +2512,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f1f08e70608d64c3a9f40b58798df5d8, type: 3}
   - {fileID: 8300000, guid: 2d91e9e74a40a47c681246f190ad38c1, type: 3}
   - {fileID: 8300000, guid: 8c3be732325374024965a7d614106369, type: 3}
+  - {fileID: 8300000, guid: 8bd40894df46b4d81b3ba411d8db7741, type: 3}
+  - {fileID: 8300000, guid: 56f839b8522a04895aaeef7c70f332db, type: 3}
+  - {fileID: 8300000, guid: 04d6729ac7002407f8cfe0ec76217ff4, type: 3}
   audioSource: {fileID: 1172398267}
   coll: {fileID: 961999075}
   almostBurned_B: 1
@@ -3192,6 +3195,10 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5793707264978490936, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -7771749731903989337, guid: ec3cb471e806444239f9c89fc7899fdb, type: 2}
     - target: {fileID: 6179066351897277080, guid: 7807f2a8e44fa4ea0bba2f5dd4ff0b75, type: 3}
       propertyPath: m_Size.x
       value: 0.033852812
